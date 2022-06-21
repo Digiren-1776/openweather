@@ -64,6 +64,7 @@ const Wcard = () => {
           <div className="h-auto mt-4 border-b-2 border-emerald-400">
             <div description="hero flex" className="flex">
               <img
+                alt="weather icon"
                 src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
                 description="hero left"
                 className="w-1/2"
@@ -74,7 +75,8 @@ const Wcard = () => {
                 </p>
                 <span
                   description="current temp"
-                  className={`p-4 font-bold text-3xl flex justify-center items-center ${data.main.temp >= 70 ? "text-orange-300" : 40 <= data.main.temp < 70   ? "text-stone-400" : data.main.temp < 40 ? "text-blue-400" : ""}`}
+                  className={`p-4 font-bold text-3xl flex justify-center items-center
+                  ${data.main.temp >= 70 ? "text-orange-300" : 70 > data.main.temp >= 40 ? "text-stone-400" : data.main.temp < 40 ? "text-blue-400" : ""}`}
                 >
                   {data.main.temp.toFixed()}&deg;F
                 </span>
@@ -85,7 +87,7 @@ const Wcard = () => {
             <div description="details" className="flex mb-4">
               <span 
               className={`basis-1/2 font-bold text-center italic
-              ${data.main.temp >= 70 ? "text-orange-300" : 40 <= data.main.temp < 70  ? "text-stone-400" : data.main.temp < 40 ? "text-blue-400" : ""}`}>
+              ${data.main.temp >= 70 ? "text-orange-300" : 70 > data.main.temp >= 40 ? "text-stone-400" : data.main.temp < 40 ? "text-blue-400" : ""}`}>
                 {data.weather[0].description}
               </span>
               <span description="MIN-MAX" className="flex justify-center basis-1/2 mr-2 text-white font-bold">
