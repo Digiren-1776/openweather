@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../index.css";
+import moment from 'moment'
 
 const Wcard = () => {
   const [data, setData] = useState([]);
@@ -24,19 +25,11 @@ const Wcard = () => {
     }
   };
 
-  // Timestamps
-  const sunriseUnix = data.sys?.sunrise || null;
-  const sunriseFormatted = new Intl.DateTimeFormat('en-US', {
-    hour: '2-digit', 
-    minute: '2-digit', 
-  }).format(sunriseUnix);
-
-  const sunsetUnix = data.sys?.sunset || null;
-  const sunsetFormatted = new Intl.DateTimeFormat('en-US', {
-  hour: '2-digit', 
-  minute: '2-digit', 
-  }).format(sunsetUnix);
-  console.log(sunriseFormatted, sunsetFormatted);
+  // // Timestamps
+  let sunrise;
+  let sunset;
+  sunrise = moment(data.sys?.sunrise).format("hh:mm a")
+  sunset = moment(data.sys?.sunset).format("hh:mm a")
   
   return (
     <>
@@ -109,14 +102,14 @@ const Wcard = () => {
               className="basis-1/2  text-white font-bold tracking-widest">
               Sunrise 
               <p className="text-orange-300">
-              {sunriseFormatted}
+              {sunrise}
               </p> 
               </span>
               
               <span className="basis-1/2 text-white font-bold tracking-widest">
               Sunset
               <p className="text-purple-500">
-              {sunsetFormatted}
+              {sunset}
               </p>
               </span>
             </div>
